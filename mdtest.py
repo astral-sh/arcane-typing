@@ -68,11 +68,13 @@ def sections(markdown: str) -> Iterator[tuple[str, str]]:
                 lines = []
             title = tokens[index + 1].content
 
-        if token.type != "fence" or token.map is None or not token.content:
+        if token.type != "fence" or token.map is None:
             continue
 
         info = token.info.split(maxsplit=1)
-        if not info or info[0] not in ("py", "python"):
+        if not info:
+            raise ValueError(f"line {token.map[0] + 1}: unlabeled code fence")
+        if info[0] not in ("py", "python") or not token.content:
             continue
 
         # Preserve Markdown line numbers when Python and ty report failures.
@@ -207,17 +209,17 @@ def discover_files() -> list[Path]:
 
 def run_tests(files: list[Path]) -> int:
     total = failed = 0
-    unreadable = False
+    invalid = False
 
     for path in files:
         try:
-            markdown = path.read_text(encoding="utf-8")
-        except (OSError, UnicodeError) as error:
-            unreadable = True
+            file_sections = list(sections(path.read_text(encoding="utf-8")))
+        except (OSError, ValueError) as error:
+            invalid = True
             print(f"FAIL {path}\n{error}", file=sys.stderr)
             continue
 
-        for title, source in sections(markdown):
+        for title, source in file_sections:
             total += 1
             try:
                 failures = check_section(source, path)
@@ -230,10 +232,11 @@ def run_tests(files: list[Path]) -> int:
                 print("\n".join(failures), file=sys.stderr)
 
     if not total:
-        print("No Python sections found", file=sys.stderr)
+        if not invalid:
+            print("No Python sections found", file=sys.stderr)
         return 1
     print(f"{total - failed}/{total} sections passed", flush=True)
-    return int(failed > 0 or unreadable)
+    return int(failed > 0 or invalid)
 
 
 def snapshot(files: list[Path]) -> dict[Path, tuple[int, int] | None]:

@@ -208,7 +208,9 @@ from arcane_typing import try_import_module
 
 if tomllib := try_import_module("tomllib"):
     reveal_type(tomllib)  # revealed: <module 'tomllib'>
-    reveal_type(tomllib.loads)  # revealed: def loads(s: str, /, *, parse_float: (str, /) -> Any = ...) -> dict[str, Any]
+    reveal_type(
+        tomllib.loads
+    )  # revealed: def loads(s: str, /, *, parse_float: (str, /) -> Any = ...) -> dict[str, Any]
     assert tomllib.loads("answer = 42") == {"answer": 42}
 else:
     print("Warning: tomllib not available")
