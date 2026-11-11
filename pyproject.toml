@@ -1,0 +1,30 @@
+[project]
+name = "arcane-typing"
+version = "0.1.0"
+description = "Experimental and advanced Python typing patterns for ty users."
+authors = [{ name = "Astral Software Inc.", email = "hey@astral.sh" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.0",
+    "ty>=0.0.101",
+    "typing-extensions>=4.13",
+]
+
+[tool.uv]
+preview-features = ["check-command"]
+
+[tool.ruff]
+preview = true
+
+[tool.ty.rules]
+experimental-syntax = "ignore"
