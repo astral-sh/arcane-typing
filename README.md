@@ -17,6 +17,10 @@ This package provides advanced typing patterns for Python projects that use [ty]
 
 - `TypeOf[Keys[T]]` gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
 
+### Type Narrowing
+
+- `hasattr_of_type(obj, "name", cls)` narrows the type of `obj.name` to (an instance of) `cls` if the attribute exists and is an instance of `cls`.
+
 ## Development
 
 Use [uv](https://docs.astral.sh/uv/) to run the following development tasks:
