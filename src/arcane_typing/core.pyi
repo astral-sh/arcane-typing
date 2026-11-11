@@ -2,6 +2,7 @@ from ty_extensions import Bottom as Bottom
 from ty_extensions import Intersection as Intersection
 from ty_extensions import Not as Not
 from ty_extensions import Top as Top
+from ty_extensions import static_assert as static_assert
 from ty_extensions._internal import CallableTypeOf
 from ty_extensions._internal import TypeOf as TypeOf
 

@@ -9,21 +9,29 @@ from typing import TYPE_CHECKING, Sequence
 
 from arcane_typing import Intersection, Not
 
+
 class A: ...
+
+
 class B: ...
+
 
 def takes_intersection(obj: Intersection[A, B]) -> None:
     reveal_type(obj)  # revealed: A & B
 
+
 class Both(A, B): ...
+
 
 takes_intersection(Both())
 
 takes_intersection(A())  # error: [invalid-argument-type]
 takes_intersection(B())  # error: [invalid-argument-type]
 
+
 def takes_negation(obj: Not[None]) -> None:
     reveal_type(obj)  # revealed: ~None
+
 
 takes_negation(1)
 
@@ -138,4 +146,21 @@ Make sure the annotation can be evaluated at runtime.
 from typing import get_type_hints
 
 get_type_hints(takes_function_like_callable)
+```
+
+## `static_assert`
+
+`static_assert` can be used to enforce conditions at type-check time. At runtime, this is a normal assertion.
+
+```py
+from arcane_typing import static_assert
+
+static_assert(1 + 1 == 2)
+
+try:
+    static_assert(1 + 1 == 3, "A message")  # error: [static-assert-error]
+except AssertionError as exc:
+    assert str(exc) == "A message"
+else:
+    raise AssertionError("static_assert did not raise")
 ```

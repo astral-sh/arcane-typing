@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, LiteralString
 
 
 class _RuntimeSpecialForm:
@@ -22,3 +22,7 @@ class Bottom(_RuntimeSpecialForm): ...
 
 
 type FunctionLikeCallable[**P, R] = Callable[P, R]
+
+
+def static_assert(condition: object, msg: LiteralString | None = None) -> None:
+    assert condition, msg

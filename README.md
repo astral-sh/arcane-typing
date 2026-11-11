@@ -47,6 +47,7 @@ uv run ty check
 - `Top[T]` can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - `Bottom[T]` can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - `FunctionLikeCallable[P, R]` works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
+- `static_assert(condition[, msg])` enforces a condition at type-check time.
 
 ### TypedDict features
 
