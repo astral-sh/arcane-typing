@@ -1,5 +1,7 @@
 # `arcane-typing`
 
+[![PyPI](https://img.shields.io/pypi/v/arcane-typing.svg)](https://pypi.org/project/arcane-typing/)
+
 This package provides advanced typing patterns for Python projects that use [ty](https://docs.astral.sh/ty/).
 
 > [!WARNING]
