@@ -41,6 +41,8 @@ uv run ty check
 
 [Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md)
 
+- [`Intersection[A, B]`](https://docs.astral.sh/ty/features/type-system/#intersection-types) is a type that represents values that are both of type `A` and type `B`.
+- [`Not[T]`](https://docs.astral.sh/ty/features/type-system/#intersection-types) describes values that are not of type `T`.
 - `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
 - `Top[T]` can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - `Bottom[T]` can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.

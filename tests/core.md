@@ -1,5 +1,44 @@
 # Core typing helpers
 
+## `Intersection` and `Not`
+
+Intersection and negation types can be spelled using `&` and `~` respectively, or by using the `Intersection` and `Not` type forms:
+
+```py
+from typing import TYPE_CHECKING, Sequence
+
+from arcane_typing import Intersection, Not
+
+class A: ...
+class B: ...
+
+def takes_intersection(obj: Intersection[A, B]) -> None:
+    reveal_type(obj)  # revealed: A & B
+
+class Both(A, B): ...
+
+takes_intersection(Both())
+
+takes_intersection(A())  # error: [invalid-argument-type]
+takes_intersection(B())  # error: [invalid-argument-type]
+
+def takes_negation(obj: Not[None]) -> None:
+    reveal_type(obj)  # revealed: ~None
+
+takes_negation(1)
+
+takes_negation(None)  # error: [invalid-argument-type]
+```
+
+Make sure the annotation can be evaluated at runtime.
+
+```py
+from typing import get_type_hints
+
+get_type_hints(takes_intersection)
+get_type_hints(takes_negation)
+```
+
 ## `TypeOf`
 
 `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias:
@@ -84,8 +123,10 @@ def f(x: int, y: str) -> bytes:
 
 takes_function_like_callable(f)
 
+
 def wrong(x: str, y: str) -> bytes:
     return b""
+
 
 if TYPE_CHECKING:
     takes_function_like_callable(wrong)  # error: [invalid-argument-type]

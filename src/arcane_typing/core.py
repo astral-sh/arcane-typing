@@ -6,6 +6,12 @@ class _RuntimeSpecialForm:
         return Any
 
 
+class Intersection(_RuntimeSpecialForm): ...
+
+
+class Not(_RuntimeSpecialForm): ...
+
+
 class TypeOf(_RuntimeSpecialForm): ...
 
 
