@@ -23,10 +23,9 @@ class Bottom(_RuntimeSpecialForm): ...
 
 type FunctionLikeCallable[**P, R] = Callable[P, R]
 
+type NonEmptyString = str
+type NonStringSequence = Sequence[str]
+
 
 def static_assert(condition: object, msg: LiteralString | None = None) -> None:
     assert condition, msg
-
-
-type NonEmptyString = str
-type NonStringSequence = Sequence[str]

@@ -45,9 +45,9 @@ uv run ty check
 - [`Top[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#top-and-bottom) can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - [`Bottom[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#top-and-bottom) can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - [`FunctionLikeCallable[P, R]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#functionlikecallable) works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
-- [`static_assert(condition[, msg])`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#static_assert) enforces a condition at type-check time.
 - [`NonEmptyString`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonemptystring) excludes the empty string literal from `str`.
 - [`NonStringSequence`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonstringsequence) excludes bare `str` from `Sequence[str]`.
+- [`static_assert(condition[, msg])`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#static_assert) enforces a condition at type-check time.
 
 ### TypedDict-related features
 

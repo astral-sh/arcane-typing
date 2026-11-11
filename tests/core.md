@@ -148,23 +148,6 @@ from typing import get_type_hints
 get_type_hints(takes_function_like_callable)
 ```
 
-## `static_assert`
-
-`static_assert` can be used to enforce conditions at type-check time. At runtime, this is a normal assertion.
-
-```py
-from arcane_typing import static_assert
-
-static_assert(1 + 1 == 2)
-
-try:
-    static_assert(1 + 1 == 3, "A message")  # error: [static-assert-error]
-except AssertionError as exc:
-    assert str(exc) == "A message"
-else:
-    raise AssertionError("static_assert did not raise")
-```
-
 ## `NonEmptyString`
 
 `NonEmptyString` is an alias for `str` that excludes the empty string literal.
@@ -213,4 +196,21 @@ def _(words: Sequence[str]):
 if TYPE_CHECKING:
     join_words("hello")  # error: [invalid-argument-type]
     join_words([42])  # error: [invalid-argument-type]
+```
+
+## `static_assert`
+
+`static_assert` can be used to enforce conditions at type-check time. At runtime, this is a normal assertion.
+
+```py
+from arcane_typing import static_assert
+
+static_assert(1 + 1 == 2)
+
+try:
+    static_assert(1 + 1 == 3, "A message")  # error: [static-assert-error]
+except AssertionError as exc:
+    assert str(exc) == "A message"
+else:
+    raise AssertionError("static_assert did not raise")
 ```
