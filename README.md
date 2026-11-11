@@ -7,6 +7,32 @@ This package provides advanced typing patterns for Python projects that use [ty]
 > [!WARNING]
 > This project is highly experimental and currently makes no promises regarding backward compatibility.
 
+## Usage
+
+Add [`arcane-typing`](https://pypi.org/project/arcane-typing/) as a dependency to your project:
+
+```sh
+uv add arcane-typing
+```
+
+Use one of its typing features in your code, for example:
+
+```py
+from arcane_typing import hasattr_of_type
+
+def get_name(obj: object) -> str:
+    if hasattr_of_type(obj, "name", str):
+        return obj.name.upper()
+    else:
+        return "<unknown>"
+```
+
+Use [ty](https://docs.astral.sh/ty/) to type-check your code:
+
+```sh
+uv run ty check
+```
+
 ## Features
 
 ### Core utilities
