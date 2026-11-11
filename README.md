@@ -54,6 +54,7 @@ uv run ty check
 [Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md)
 
 - `TypeOf[Keys[T]]` gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
+- `TypeOf[Values[T]]` gives the union of value types that can appear in a `TypedDict` `T`.
 
 ### Type Narrowing
 
