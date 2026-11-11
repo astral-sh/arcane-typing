@@ -204,9 +204,11 @@ def join_words(words: NonStringSequence) -> str:
 assert join_words(["hello", "world"]) == "hello, world"
 assert join_words(("hello", "world")) == "hello, world"
 
+
 def _(words: Sequence[str]):
     if not isinstance(words, str):
         return join_words(words)
+
 
 if TYPE_CHECKING:
     join_words("hello")  # error: [invalid-argument-type]

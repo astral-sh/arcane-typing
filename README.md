@@ -1,4 +1,4 @@
-# `arcane-typing`
+# arcane-typing
 
 [![PyPI](https://img.shields.io/pypi/v/arcane-typing.svg)](https://pypi.org/project/arcane-typing/)
 
@@ -39,32 +39,26 @@ uv run ty check
 
 ### Core utilities
 
-[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md)
-
-- [`Intersection[A, B]`](https://docs.astral.sh/ty/features/type-system/#intersection-types) is a type that represents values that are both of type `A` and type `B`.
-- [`Not[T]`](https://docs.astral.sh/ty/features/type-system/#intersection-types) describes values that are not of type `T`.
-- `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
-- `Top[T]` can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
-- `Bottom[T]` can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
-- `FunctionLikeCallable[P, R]` works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
-- `static_assert(condition[, msg])` enforces a condition at type-check time.
-- `NonEmptyString` excludes the empty string literal from `str`.
-- `NonStringSequence` excludes bare `str` from `Sequence[str]`.
+- [`Intersection[A, B]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#intersection-and-not) is an [intersection type](https://docs.astral.sh/ty/features/type-system/#intersection-types) that represents values that are both of type `A` and type `B`.
+- [`Not[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#intersection-and-not) describes values that are [not of type `T`](https://docs.astral.sh/ty/features/type-system/#intersection-types).
+- [`TypeOf[expr]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#typeof) can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
+- [`Top[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#top-and-bottom) can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
+- [`Bottom[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#top-and-bottom) can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
+- [`FunctionLikeCallable[P, R]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#functionlikecallable) works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
+- [`static_assert(condition[, msg])`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#static_assert) enforces a condition at type-check time.
+- [`NonEmptyString`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonemptystring) excludes the empty string literal from `str`.
+- [`NonStringSequence`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonstringsequence) excludes bare `str` from `Sequence[str]`.
 
 ### TypedDict features
 
-[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md)
-
-- `TypeOf[Keys[T]]` gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
-- `TypeOf[Values[T]]` gives the union of value types that can appear in a `TypedDict` `T`.
+- [`TypeOf[Keys[T]]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md#keys-and-values) gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
+- [`TypeOf[Values[T]]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md#keys-and-values) gives the union of value types that can appear in a `TypedDict` `T`.
 
 ### Type Narrowing
 
-[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md)
-
-- `hasattr_of_type(obj, "name", T)` narrows `obj.name` to type `T` if the attribute exists and if
+- [`hasattr_of_type(obj, "name", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#hasattr_of_type) narrows `obj.name` to type `T` if the attribute exists and if
   it is an instance of `T` (which can be a class or a union of classes)
-- `is_sequence_of(obj, T)` checks that `obj` is a sequence and that every element is an instance of `T` (which can be a class or a union of classes). It narrows `obj` to `Sequence[T]` on success.
+- [`is_sequence_of(obj, T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#is_sequence_of) checks that `obj` is a sequence and that every element is an instance of `T` (which can be a class or a union of classes). It narrows `obj` to `Sequence[T]` on success.
 
 ## Development
 
