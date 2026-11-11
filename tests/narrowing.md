@@ -1,11 +1,11 @@
 # Type-narrowing helpers
 
-## `hasattr_of_type`
+## `has_attr_of_type`
 
 This function can be used to check whether an object has an attribute with a specific type, allowing type narrowing based on the attribute's presence and type:
 
 ```py
-from arcane_typing import hasattr_of_type
+from arcane_typing import has_attr_of_type
 
 
 class Record:
@@ -13,13 +13,13 @@ class Record:
 
 
 def check(record: Record) -> None:
-    if hasattr_of_type(record, "dynamic_attr", str):
+    if has_attr_of_type(record, "dynamic_attr", str):
         reveal_type(record.ordinary_attr)  # revealed: int
         reveal_type(record.dynamic_attr)  # revealed: str
 
 
 def check_union(record: Record) -> None:
-    if hasattr_of_type(record, "dynamic_attr", int | str):
+    if has_attr_of_type(record, "dynamic_attr", int | str):
         reveal_type(record.dynamic_attr)  # revealed: int | str
 ```
 
@@ -28,13 +28,13 @@ Check the runtime functionality:
 ```py
 from types import SimpleNamespace
 
-assert hasattr_of_type(SimpleNamespace(value="hello"), "value", str)
-assert not hasattr_of_type(SimpleNamespace(value=42), "value", str)
-assert not hasattr_of_type(SimpleNamespace(), "value", str)
+assert has_attr_of_type(SimpleNamespace(value="hello"), "value", str)
+assert not has_attr_of_type(SimpleNamespace(value=42), "value", str)
+assert not has_attr_of_type(SimpleNamespace(), "value", str)
 
-assert hasattr_of_type(SimpleNamespace(value="hello"), "value", int | str)
-assert hasattr_of_type(SimpleNamespace(value=1), "value", int | str)
-assert not hasattr_of_type(SimpleNamespace(value=None), "value", int | str)
+assert has_attr_of_type(SimpleNamespace(value="hello"), "value", int | str)
+assert has_attr_of_type(SimpleNamespace(value=1), "value", int | str)
+assert not has_attr_of_type(SimpleNamespace(value=None), "value", int | str)
 ```
 
 ## `is_sequence_of`

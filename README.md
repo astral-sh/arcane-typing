@@ -18,10 +18,10 @@ uv add arcane-typing
 Use one of its typing features in your code, for example:
 
 ```py
-from arcane_typing import hasattr_of_type
+from arcane_typing import has_attr_of_type
 
 def get_name(obj: object) -> str:
-    if hasattr_of_type(obj, "name", str):
+    if has_attr_of_type(obj, "name", str):
         return obj.name.upper()
     else:
         return "<unknown>"
@@ -56,7 +56,7 @@ uv run ty check
 
 ### Type-narrowing helpers
 
-- [`hasattr_of_type(obj, "name", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#hasattr_of_type) narrows `obj.name` to type `T` if the attribute exists and if
+- [`has_attr_of_type(obj, "name", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#has_attr_of_type) narrows `obj.name` to type `T` if the attribute exists and if
   it is an instance of `T` (which can be a class or a union of classes)
 - [`is_sequence_of(obj, T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#is_sequence_of) checks that `obj` is a sequence and that every element is an instance of `T` (which can be a class or a union of classes). It narrows `obj` to `Sequence[T]` on success.
 
