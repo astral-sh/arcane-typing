@@ -30,6 +30,8 @@ def get_name(obj: object) -> str:
 Use [ty](https://docs.astral.sh/ty/) to type-check your code:
 
 ```sh
+uv add --dev ty  # If you are not already using it
+
 uv run ty check
 ```
 
