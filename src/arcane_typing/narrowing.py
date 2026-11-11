@@ -1,5 +1,5 @@
 from types import UnionType
-from typing import Sequence, get_args
+from typing import Mapping, Sequence, get_args
 
 
 def has_attr_of_type(obj: object, key: str, clsinfo: object, /) -> bool:
@@ -9,6 +9,17 @@ def has_attr_of_type(obj: object, key: str, clsinfo: object, /) -> bool:
         return False
 
     return isinstance(value, _validate_clsinfo(clsinfo))
+
+
+def has_item_of_type(obj: object, key: str, clsinfo: object, /) -> bool:
+    clsinfo = _validate_clsinfo(clsinfo)
+    if not isinstance(obj, Mapping):
+        return False
+
+    try:
+        return key in obj and isinstance(obj[key], clsinfo)
+    except KeyError:
+        return False
 
 
 def is_sequence_of(obj: object, clsinfo: object, /) -> bool:

@@ -58,6 +58,7 @@ uv run ty check
 
 - [`has_attr_of_type(obj, "name", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#has_attr_of_type) narrows `obj.name` to type `T` if the attribute exists and if
   it is an instance of `T` (which can be a class or a union of classes)
+- [`has_item_of_type(obj, "key", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#has_item_of_type) narrows `obj["key"]` to `T` if the mapping contains the key and its value is an instance of `T`.
 - [`is_sequence_of(obj, T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#is_sequence_of) checks that `obj` is a sequence and that every element is an instance of `T` (which can be a class or a union of classes). It narrows `obj` to `Sequence[T]` on success.
 
 ## Development

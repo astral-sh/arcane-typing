@@ -17,5 +17,5 @@ class _Signature[**P, R]:
 # the return type with `Any`, so we use this hack:
 type FunctionLikeCallable[**P, R] = CallableTypeOf[_Signature[P, R].call]
 
-type NonEmptyString = Intersection[str, Not[Literal[""]]]
-type NonStringSequence = Intersection[Sequence[str], Not[str]]
+type NonEmptyString = str & ~Literal[""]
+type NonStringSequence = Sequence[str] & ~str
