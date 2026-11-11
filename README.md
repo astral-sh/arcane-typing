@@ -13,7 +13,7 @@ This package provides advanced typing patterns for Python projects that use [ty]
 - `Top[T]` can be used to refer to the top-materialization of `T`.
 - `Bottom[T]` can be used to refer to the bottom-materialization of `T`.
 
-### TypedDict
+### TypedDict features
 
 - `TypeOf[Keys[T]]` gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
 
