@@ -164,3 +164,51 @@ except AssertionError as exc:
 else:
     raise AssertionError("static_assert did not raise")
 ```
+
+## `NonEmptyString`
+
+`NonEmptyString` is an alias for `str` that excludes the empty string literal.
+
+```py
+from arcane_typing import NonEmptyString
+
+
+def greet(name: NonEmptyString) -> str:
+    return f"Hello, {name}!"
+
+
+greet("Ada")
+greet("")  # error: [invalid-argument-type]
+
+
+def _(name: str) -> str:
+    if name:
+        return greet(name)
+    return "Hello!"
+```
+
+## `NonStringSequence`
+
+A `NonStringSequence` accepts sequences of strings and excludes bare strings.
+
+```py
+from typing import TYPE_CHECKING, Sequence
+
+from arcane_typing import NonStringSequence
+
+
+def join_words(words: NonStringSequence) -> str:
+    return ", ".join(words)
+
+
+assert join_words(["hello", "world"]) == "hello, world"
+assert join_words(("hello", "world")) == "hello, world"
+
+def _(words: Sequence[str]):
+    if not isinstance(words, str):
+        return join_words(words)
+
+if TYPE_CHECKING:
+    join_words("hello")  # error: [invalid-argument-type]
+    join_words([42])  # error: [invalid-argument-type]
+```

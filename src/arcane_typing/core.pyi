@@ -1,3 +1,5 @@
+from typing import Literal, Sequence
+
 from ty_extensions import Bottom as Bottom
 from ty_extensions import Intersection as Intersection
 from ty_extensions import Not as Not
@@ -14,3 +16,6 @@ class _Signature[**P, R]:
 # has a permissively typed `__call__` method which would allow arbitrary calls and intersect
 # the return type with `Any`, so we use this hack:
 type FunctionLikeCallable[**P, R] = CallableTypeOf[_Signature[P, R].call]
+
+type NonEmptyString = Intersection[str, Not[Literal[""]]]
+type NonStringSequence = Intersection[Sequence[str], Not[str]]

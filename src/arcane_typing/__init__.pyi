@@ -1,6 +1,8 @@
 from .core import Bottom as Bottom
 from .core import FunctionLikeCallable as FunctionLikeCallable
 from .core import Intersection as Intersection
+from .core import NonEmptyString as NonEmptyString
+from .core import NonStringSequence as NonStringSequence
 from .core import Not as Not
 from .core import Top as Top
 from .core import TypeOf as TypeOf

@@ -1,4 +1,4 @@
-from typing import Any, Callable, LiteralString
+from typing import Any, Callable, LiteralString, Sequence
 
 
 class _RuntimeSpecialForm:
@@ -22,6 +22,9 @@ class Bottom(_RuntimeSpecialForm): ...
 
 
 type FunctionLikeCallable[**P, R] = Callable[P, R]
+
+type NonEmptyString = str
+type NonStringSequence = Sequence[str]
 
 
 def static_assert(condition: object, msg: LiteralString | None = None) -> None:
