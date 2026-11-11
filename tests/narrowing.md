@@ -1,4 +1,4 @@
-# Narrowing helpers
+# Type-narrowing helpers
 
 ## `hasattr_of_type`
 

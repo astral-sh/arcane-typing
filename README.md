@@ -37,7 +37,7 @@ uv run ty check
 
 ## Features
 
-### Core utilities
+### Core functionality and types
 
 - [`Intersection[A, B]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#intersection-and-not) is an [intersection type](https://docs.astral.sh/ty/features/type-system/#intersection-types) that represents values that are both of type `A` and type `B`.
 - [`Not[T]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#intersection-and-not) describes values that are [not of type `T`](https://docs.astral.sh/ty/features/type-system/#intersection-types).
@@ -49,12 +49,12 @@ uv run ty check
 - [`NonEmptyString`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonemptystring) excludes the empty string literal from `str`.
 - [`NonStringSequence`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonstringsequence) excludes bare `str` from `Sequence[str]`.
 
-### TypedDict features
+### TypedDict-related features
 
 - [`TypeOf[Keys[T]]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md#keys-and-values) gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
 - [`TypeOf[Values[T]]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md#keys-and-values) gives the union of value types that can appear in a `TypedDict` `T`.
 
-### Type Narrowing
+### Type-narrowing helpers
 
 - [`hasattr_of_type(obj, "name", T)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md#hasattr_of_type) narrows `obj.name` to type `T` if the attribute exists and if
   it is an instance of `T` (which can be a class or a union of classes)

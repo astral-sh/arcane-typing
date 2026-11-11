@@ -1,4 +1,4 @@
-# Core typing helpers
+# Core functionality and types
 
 ## `Intersection` and `Not`
 

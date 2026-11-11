@@ -1,4 +1,4 @@
-# TypedDict features
+# TypedDict-related features
 
 ## `Keys` and `Values`
 
