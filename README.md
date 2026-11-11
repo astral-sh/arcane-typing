@@ -4,7 +4,7 @@
 
 This package provides advanced typing patterns for Python projects that use [ty](https://docs.astral.sh/ty/).
 
-> [!WARNING]
+> [!NOTE]
 > This project is highly experimental and currently makes no promises regarding backward compatibility.
 
 ## Usage

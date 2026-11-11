@@ -30,5 +30,8 @@ preview = true
 # Prefer the typing aliases for collection annotations.
 ignore = ["deprecated-import"]
 
+[tool.ruff.format]
+exclude = ["README.md"]
+
 [tool.ty.rules]
 experimental-syntax = "ignore"
