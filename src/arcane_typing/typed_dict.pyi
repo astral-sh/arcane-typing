@@ -1,5 +1,4 @@
-from collections.abc import Iterable, Mapping
-from typing import LiteralString
+from typing import Iterable, LiteralString, Mapping
 
 from typing_extensions import TypeForm
 

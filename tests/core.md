@@ -32,8 +32,7 @@ get_type_hints(takes_module)
 ## `Top` and `Bottom`
 
 ```py
-from collections.abc import Sequence
-from typing import Any
+from typing import Any, Sequence
 
 from arcane_typing import Bottom, Top
 

@@ -1,4 +1,6 @@
-from typing import LiteralString, Protocol, TypeIs, overload
+from typing import LiteralString, Protocol, Sequence, TypeIs, overload
+
+from typing_extensions import TypeForm
 
 class _HasAttr[K: LiteralString, V](Protocol):
     @overload
@@ -7,6 +9,9 @@ class _HasAttr[K: LiteralString, V](Protocol):
     def __getattr__(self, name: str, /) -> object: ...
 
 def hasattr_of_type[K: LiteralString, V](
-    obj: object, /, key: K, cls: type[V]
+    obj: object, key: K, clsinfo: TypeForm[V], /
 ) -> TypeIs[_HasAttr[K, V]]:
-    """Check whether `obj` has an attribute `key` and that it is an instance of `cls`."""
+    """Check whether `obj` has an attribute `key` that matches a class or union of classes."""
+
+def is_sequence_of[T](obj: object, clsinfo: TypeForm[T], /) -> TypeIs[Sequence[T]]:
+    """Check whether `obj` is a sequence whose elements match a class or union of classes."""

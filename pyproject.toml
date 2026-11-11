@@ -26,5 +26,9 @@ preview-features = ["check-command"]
 [tool.ruff]
 preview = true
 
+[tool.ruff.lint]
+# Prefer the typing aliases for collection annotations.
+ignore = ["deprecated-import"]
+
 [tool.ty.rules]
 experimental-syntax = "ignore"

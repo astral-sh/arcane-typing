@@ -11,12 +11,12 @@ import subprocess
 import sys
 import tokenize
 from collections import Counter
-from collections.abc import Iterator
 from dataclasses import dataclass
 from io import StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from time import sleep
+from typing import Iterator
 
 from markdown_it import MarkdownIt
 
