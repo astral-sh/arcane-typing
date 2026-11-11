@@ -1,6 +1,6 @@
 [project]
 name = "arcane-typing"
-version = "0.1.0"
+version = "0.1.1"
 description = "Experimental and advanced Python typing patterns for ty users."
 authors = [{ name = "Astral Software Inc.", email = "hey@astral.sh" }]
 readme = "README.md"
