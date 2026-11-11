@@ -1,4 +1,5 @@
-from typing import Literal, Sequence
+from importlib import import_module
+from typing import Callable, Literal, Sequence
 
 from ty_extensions import Bottom as Bottom
 from ty_extensions import Intersection as Intersection
@@ -19,3 +20,8 @@ type FunctionLikeCallable[**P, R] = CallableTypeOf[_Signature[P, R].call]
 
 type NonEmptyString = str & ~Literal[""]
 type NonStringSequence = Sequence[str] & ~str
+
+# We use a trick here and define `try_import_module` as either the original `import_module`
+# or a callable that returns `None` for failed imports. By using `TypeOf[..]` we benefit
+# from ty's special inference behavior of `import_module`.
+try_import_module: TypeOf[import_module] | Callable[[str], None]

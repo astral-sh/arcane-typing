@@ -9,6 +9,7 @@ from .core import Not as Not
 from .core import Top as Top
 from .core import TypeOf as TypeOf
 from .core import static_assert as static_assert
+from .core import try_import_module as try_import_module
 from .narrowing import has_attr_of_type as has_attr_of_type
 from .narrowing import has_item_of_type as has_item_of_type
 from .narrowing import is_sequence_of as is_sequence_of

@@ -198,6 +198,49 @@ if TYPE_CHECKING:
     join_words([42])  # error: [invalid-argument-type]
 ```
 
+## `try_import_module`
+
+This function can be used to attempt an optional import of a module and safely handle the case where the module is not available.
+It is supposed to be used like this:
+
+```py
+from arcane_typing import try_import_module
+
+if tomllib := try_import_module("tomllib"):
+    reveal_type(tomllib)  # revealed: <module 'tomllib'>
+    reveal_type(tomllib.loads)  # revealed: def loads(s: str, /, *, parse_float: (str, /) -> Any = ...) -> dict[str, Any]
+    assert tomllib.loads("answer = 42") == {"answer": 42}
+else:
+    print("Warning: tomllib not available")
+```
+
+Ideally, this code should be type-checked in an environment where the module is available (we use `tomllib` for demonstration purposes
+here. It is always available in the test environment). The code should still type-check correctly
+even if the module is not available. To demonstrate this, here is the same code snippet with a non-existent module:
+
+```py
+from arcane_typing import try_import_module
+
+if othertoml := try_import_module("othertoml"):
+    reveal_type(othertoml)  # revealed: ModuleType & ~AlwaysFalsy
+    reveal_type(othertoml.loads)  # revealed: Any
+    othertoml.loads("answer = 42") == {"answer": 42}
+else:
+    print("Warning: othertoml module not available")
+```
+
+
+The following section tests the actual runtime behavior:
+
+```py
+tomllib = try_import_module("tomllib")
+assert tomllib is not None
+assert hasattr(tomllib, "loads")
+
+nonexistent = try_import_module("nonexistent")
+assert nonexistent is None
+```
+
 ## `static_assert`
 
 `static_assert` can be used to enforce conditions at type-check time. At runtime, this is a normal assertion.

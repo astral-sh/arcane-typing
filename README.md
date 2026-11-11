@@ -47,6 +47,7 @@ uv run ty check
 - [`FunctionLikeCallable[P, R]`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#functionlikecallable) works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
 - [`NonEmptyString`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonemptystring) excludes the empty string literal from `str`.
 - [`NonStringSequence`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#nonstringsequence) excludes bare `str` from `Sequence[str]`.
+- [`try_import_module(name)`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#try_import_module) returns the specific module type for a resolvable name, or `None` if it is not available.
 - [`static_assert(condition[, msg])`](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md#static_assert) enforces a condition at type-check time.
 
 ### TypedDict-related features
