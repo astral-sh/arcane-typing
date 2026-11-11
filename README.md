@@ -37,15 +37,21 @@ uv run ty check
 
 ### Core utilities
 
+[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md)
+
 - `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
 - `Top[T]` can be used to refer to the top-materialization of `T`.
 - `Bottom[T]` can be used to refer to the bottom-materialization of `T`.
 
 ### TypedDict features
 
+[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/typed_dict.md)
+
 - `TypeOf[Keys[T]]` gives a union of string literals for the keys that can appear in a `TypedDict` `T`.
 
 ### Type Narrowing
+
+[Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/narrowing.md)
 
 - `hasattr_of_type(obj, "name", T)` narrows `obj.name` to type `T` if the attribute exists and if
   it is an instance of `T` (which can be a class or a union of classes)
