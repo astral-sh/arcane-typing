@@ -56,3 +56,45 @@ from typing import get_type_hints
 
 get_type_hints(takes_materializations)
 ```
+
+## `FunctionLikeCallable`
+
+This type describes Python functions with a specified call signature and exposes function attributes.
+
+```py
+from typing import TYPE_CHECKING
+
+from arcane_typing import FunctionLikeCallable
+
+
+def takes_function_like_callable(f: FunctionLikeCallable[[int, str], bytes]) -> None:
+    reveal_type(f.__name__)  # revealed: str
+    reveal_type(f.__qualname__)  # revealed: str
+    reveal_type(f.__code__)  # revealed: CodeType
+    reveal_type(f(1, "a"))  # revealed: bytes
+
+    if TYPE_CHECKING:
+        f("wrong", "a")  # error: [invalid-argument-type]
+        f(1)  # error: [missing-argument]
+
+
+def f(x: int, y: str) -> bytes:
+    return b""
+
+
+takes_function_like_callable(f)
+
+def wrong(x: str, y: str) -> bytes:
+    return b""
+
+if TYPE_CHECKING:
+    takes_function_like_callable(wrong)  # error: [invalid-argument-type]
+```
+
+Make sure the annotation can be evaluated at runtime.
+
+```py
+from typing import get_type_hints
+
+get_type_hints(takes_function_like_callable)
+```

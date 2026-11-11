@@ -44,6 +44,7 @@ uv run ty check
 - `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
 - `Top[T]` can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 - `Bottom[T]` can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
+- `FunctionLikeCallable[P, R]` works just like `Callable[P, R]` but also allows attributes like `__name__`, `__qualname__`, or `__code__` to be accessed.
 
 ### TypedDict features
 

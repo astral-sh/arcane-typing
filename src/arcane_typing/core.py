@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Callable
 
 
 class _RuntimeSpecialForm:
@@ -13,3 +13,6 @@ class Top(_RuntimeSpecialForm): ...
 
 
 class Bottom(_RuntimeSpecialForm): ...
+
+
+type FunctionLikeCallable[**P, R] = Callable[P, R]
