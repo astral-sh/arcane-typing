@@ -40,8 +40,8 @@ uv run ty check
 [Tests](https://github.com/astral-sh/arcane-typing/blob/main/tests/core.md)
 
 - `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias.
-- `Top[T]` can be used to refer to the top-materialization of `T`.
-- `Bottom[T]` can be used to refer to the bottom-materialization of `T`.
+- `Top[T]` can be used to refer to the [top-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
+- `Bottom[T]` can be used to refer to the [bottom-materialization](https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations) of `T`.
 
 ### TypedDict features
 
