@@ -5,11 +5,12 @@
 `TypeOf[expr]` can be used to obtain ty's inferred type for an expression in a type annotation or type alias:
 
 ```py
-from arcane_typing import TypeOf
 import collections
 
+from arcane_typing import TypeOf
 
-def _(x: TypeOf[collections]):
+
+def takes_module(x: TypeOf[collections]):
     reveal_type(x)  # revealed: <module 'collections'>
 
 
@@ -18,6 +19,14 @@ type Three = TypeOf[1 + 2]
 
 def _(three: Three):
     reveal_type(three)  # revealed: Literal[3]
+```
+
+Make sure the annotation can be evaluated at runtime.
+
+```py
+from typing import get_type_hints
+
+get_type_hints(takes_module)
 ```
 
 ## `Top` and `Bottom`
@@ -29,7 +38,7 @@ from typing import Any
 from arcane_typing import Bottom, Top
 
 
-def _(
+def takes_materializations(
     sequence_top: Top[Sequence[Any]],
     sequence_bottom: Bottom[Sequence[Any]],
     list_top: Top[list[Any]],
@@ -39,4 +48,12 @@ def _(
     reveal_type(sequence_bottom)  # revealed: Sequence[Never]
     reveal_type(list_top)  # revealed: Top[list[Any]]
     reveal_type(list_bottom)  # revealed: Bottom[list[Any]]
+```
+
+Make sure the annotations can be evaluated at runtime.
+
+```py
+from typing import get_type_hints
+
+get_type_hints(takes_materializations)
 ```

@@ -55,3 +55,9 @@ type EmptyKeys = TypeOf[Keys[Empty]]
 def _(key: EmptyKeys) -> None:
     reveal_type(key)  # revealed: Never
 ```
+
+Make sure the type alias can be evaluated at runtime.
+
+```py
+MovieKey.__value__
+```
