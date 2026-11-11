@@ -1,6 +1,9 @@
 # `arcane-typing`
 
-This package provides experimental and advanced typing patterns for Python projects that use [ty](https://docs.astral.sh/ty/).
+This package provides advanced typing patterns for Python projects that use [ty](https://docs.astral.sh/ty/).
+
+> [!WARNING]
+> This project is highly experimental and currently makes no promises regarding backward compatibility.
 
 ## Features
 
