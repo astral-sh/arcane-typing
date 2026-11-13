@@ -1,17 +1,23 @@
 name: Release to PyPI
 
 on:
-  push:
-    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 permissions: {}
 
 jobs:
   build:
+    if: github.repository == 'astral-sh/arcane-typing' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: read
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -21,12 +27,25 @@ jobs:
           version: "0.13.5"
           enable-cache: false
       - name: Check release version
+        id: version
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          expected="v$(uv version --short)"
-          if [ "$GITHUB_REF_NAME" != "$expected" ]; then
-            echo "Release tag $GITHUB_REF_NAME does not match package version $expected" >&2
+          version=$(uv version --short)
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Package version $version must use MAJOR.MINOR.PATCH." >&2
             exit 1
           fi
+
+          tag="v$version"
+          existing=$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/$tag" |
+            jq -r --arg ref "refs/tags/$tag" '.[] | select(.ref == $ref) | .object.sha')
+          if [[ -n "$existing" ]]; then
+            echo "Tag $tag already exists." >&2
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - run: uv build --no-sources
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
@@ -51,3 +70,21 @@ jobs:
           version: "0.13.5"
           enable-cache: false
       - run: uv publish --trusted-publishing always
+
+  github-release:
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create tag and GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.build.outputs.tag }}
+        run: |
+          gh release create "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --generate-notes
