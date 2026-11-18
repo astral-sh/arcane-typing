@@ -21,5 +21,5 @@ jobs:
           version: "0.13.5"
       - run: uv run --locked ruff check
       - run: uv run --locked ruff format --check
-      - run: TY_UV=scripts uv run --locked ty check
+      - run: uv run --locked ty check
       - run: uv run --locked mdtest.py

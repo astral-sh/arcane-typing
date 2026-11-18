@@ -16,7 +16,7 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "ruff>=0.17.0",
-    "ty>=0.0.101",
+    "ty>=0.0.106",
     "typing-extensions>=4.13",
 ]
 
@@ -35,3 +35,6 @@ exclude = ["README.md"]
 
 [tool.ty.rules]
 experimental-syntax = "ignore"
+
+[tool.ty.project-manager]
+script = "uv"
