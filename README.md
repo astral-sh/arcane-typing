@@ -72,7 +72,7 @@ uv run ruff check
 uv run ruff format --check
 
 # Type checking
-TY_UV=scripts uv run ty check
+uv run ty check
 
 # Markdown tests
 uv run mdtest.py
